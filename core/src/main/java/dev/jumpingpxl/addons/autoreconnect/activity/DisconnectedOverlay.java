@@ -2,9 +2,11 @@ package dev.jumpingpxl.addons.autoreconnect.activity;
 
 import dev.jumpingpxl.addons.autoreconnect.AutoReconnect;
 import java.util.concurrent.TimeUnit;
+import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.client.component.format.TextColor;
+import net.labymod.api.client.gfx.pipeline.renderer.text.TextRenderer;
 import net.labymod.api.client.gui.navigation.NavigationElement;
 import net.labymod.api.client.gui.navigation.elements.ScreenNavigationElement;
 import net.labymod.api.client.gui.screen.Parent;
@@ -18,7 +20,6 @@ import net.labymod.api.client.gui.screen.widget.AbstractWidget;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.BoundsType;
 import net.labymod.api.client.gui.screen.widget.widgets.input.ButtonWidget;
 import net.labymod.api.client.gui.screen.widget.widgets.layout.FlexibleContentWidget;
-import net.labymod.api.client.render.font.text.TextRenderer;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.gui.screen.ScreenUpdateVanillaWidgetEvent;
 import net.labymod.api.util.I18n;
@@ -160,8 +161,8 @@ public class DisconnectedOverlay extends AbstractLayerActivity {
     }
 
     if (text != null) {
-      TextRenderer textRenderer = this.autoReconnect.labyAPI().renderPipeline().textRenderer();
-      float width = textRenderer.width(text);
+      TextRenderer textRenderer = Laby.references().textRendererProvider().getRenderer();
+      float width = textRenderer.getWidth(text);
       this.setVariable(WIDTH_VARIABLE_KEY, width);
     }
   }
